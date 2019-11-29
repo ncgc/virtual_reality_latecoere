@@ -1,0 +1,27 @@
+{
+  "name": "aframe-study",
+  "version": "1.0.0",
+  "description": "study",
+  "author": "natalia cardoso goncalves",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/ncgc/aframe/issues"
+  },
+  "homepage": "https://gitlab.com/ncgc/aframe#readme",
+  "scripts": {
+    "start": "live-server --port=7000",
+    "deploy": "ghpages"
+  },
+  "devDependencies": {
+    "ghpages": "0.0.3",
+    "live-server": "^1.2.0"
+  },
+  "keywords": [
+    "Aframe"
+  ],
+ 
+  "dependencies": {
+    "aframe": "^0.9.2",
+    "aframe-layout-component": "^5.3.0"
+  }
+}
