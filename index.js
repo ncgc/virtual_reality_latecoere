@@ -1,17 +1,36 @@
-require('aframe')
-require('aframe-event-set-component');
+// import 'aframe';
+// import 'aframe-event-set-component';
 
-function tooltip(obj, objName){
-    console.log('name', name);
-    console.log('object', obj);
-}
+// var dictObjName ={
+//     drill: "Furadeira",
+//     tripod: "Tripe",
+//     door: "Porta",
+//     whiteboard: "Quadro de recados",
+//     drawing: "Desenho",
+//     instructions: "Instrucoes"
+// }
 
-var dictObjName ={
-    drill: "Furadeira",
-    tripod: "Tripe",
-    door: "Porta",
-    whiteboard: "Quadro de recados",
-    drawing: "Desenho",
-    instructions: "Instrucoes"
-}
 
+// AFRAME.registerComponent('click-drag', {
+//     init: function(){
+//         var el = this.el;
+//         console.log(el);
+
+//         el.addEventListener('drag', function(){
+//             console.log(el, 'fui selecionado');
+            
+//         });
+//     }
+// });
+
+AFRAME.registerComponent('click-drag-drill', {
+    init: function(){
+        var el = this.el;
+        console.log(el);
+
+        el.addEventListener('ondrag', function(){
+            console.log(el, 'fui selecionado');
+            
+        });
+    }
+});
