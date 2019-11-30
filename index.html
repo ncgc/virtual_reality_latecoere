@@ -5,26 +5,52 @@
             <title>Aframe Study</title>
             <meta name="description" content="A WebVR training using A-Frame.">
             <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+            <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+    
     </head>
     <body>
         <a-scene>
+
+            <!-- Cursor Component -->
+		    <a-camera>
+                <a-entity cursor position="0 0 -1"
+                          geometry="primitive: sphere; radius: 0.007"
+                          material="color: #4287f5; shader: flat; opacity: 0.5">
+                </a-entity>
+            </a-camera>
             
+
             <!--Models Reference-->
             <a-assets>
                 <a-asset-item id="doorModel" src="assets/model/door/door.gltf"></a-asset-item>
+                <a-asset-item id="workbenchModel" src="assets/model/toolbox/Toolbox.gltf"></a-asset-item>
+                <a-asset-item id="tripodModel" src="assets/model/tripod/tripod.gltf"></a-asset-item>
+                <a-asset-item id="drillModel" src="assets/model/drill/Drill_01.gltf"></a-asset-item>
             </a-assets>
 
+
+            <!-- Ground -->
+            <a-plane material="color: #4287f5"
+                     rotation="-90 0 0"
+                     scale="10 10 1">
+            </a-plane>
             
+
             <!--Door-->
             <a-entity id="door"
                       gltf-model="#doorModel" 
                       scale="0.05 0.05 0.05" position="0 0 -5" rotation="-90 -90 0">
                         <!--Position indicator-->
                         <a-sphere id="hole_position"
-                            radius="1" height="1.5" color="#EF2D5E"
-                            position="10 -15 50" 
-                            
-                            >
+                                  radius="1" height="1.5" color="#EF2D5E"
+                                  position="1 -15 50" >
+                                  <a-animation  attribute="material.color"
+                                                from="#EF2D5E"
+                                                to="#4287f5"
+                                                repeat="indefinite"
+                                                direction="alternate"
+                                                dur="100">
+                                  </a-animation>
                         </a-sphere>
 
                         <!--Instruction to hole -->
@@ -49,7 +75,26 @@
                         </a-cylinder>
             </a-entity>
 
-           
+
+           <!--Workbench-->
+           <a-entity id="workbench"
+                     gltf-model="#workbenchModel"
+                     scale="1.2 1.2 1.2" position="0 0 -5" rotation="0 -50 0">
+                     
+                     <!--Tripod-->
+                     <a-entity id="tripod"
+                               gltf-model="#tripodModel"
+                               scale="0.08 0.08 0.08" position="2.2 0.9 -1.7" rotation="0 0 90">
+
+                     </a-entity>
+
+                     <!--Drill-->
+                     <a-entity  id="drill"
+                                gltf-model="#drillModel"
+                                scale="0.04 0.04 0.04" position="2.45 0.9 -1.7">
+
+                     </a-entity>
+           </a-entity>
 
         </a-scene>
     </body>
