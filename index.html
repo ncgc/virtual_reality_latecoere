@@ -26,6 +26,8 @@
                 <a-asset-item id="workbenchModel" src="assets/model/toolbox/Toolbox.gltf"></a-asset-item>
                 <a-asset-item id="tripodModel" src="assets/model/tripod/tripod.gltf"></a-asset-item>
                 <a-asset-item id="drillModel" src="assets/model/drill/Drill_01.gltf"></a-asset-item>
+                <a-asset-item id="cautionModel" src="assets/model/caution/model.gltf"></a-asset-item>
+                <a-asset-item id="whiteboardModel" src="assets/model/whiteboard/Whiteboard.gltf"></a-asset-item>
             </a-assets>
 
 
@@ -65,7 +67,6 @@
                                                shader: msdf"
                                   >
                         </a-entity>
-
                         
                         <!--Hole made by the drill-->
                         <a-cylinder id="hole"
@@ -85,15 +86,25 @@
                      <a-entity id="tripod"
                                gltf-model="#tripodModel"
                                scale="0.08 0.08 0.08" position="2.2 0.9 -1.7" rotation="0 0 90">
-
                      </a-entity>
 
                      <!--Drill-->
                      <a-entity  id="drill"
                                 gltf-model="#drillModel"
                                 scale="0.04 0.04 0.04" position="2.45 0.9 -1.7">
-
                      </a-entity>
+
+                     <!--Caution-->
+                    <a-entity   id="caution"
+                                gltf-model="#cautionModel"
+                                position="5.5 -2.5 -1" rotation= "10 -4.5 0" scale="2.5 2.5 2.5">
+                    </a-entity>
+           </a-entity>
+
+           <!--Whiteboard-->
+           <a-entity    id="whiteboard"
+                        gltf-model="#whiteboardModel">
+
            </a-entity>
 
         </a-scene>
