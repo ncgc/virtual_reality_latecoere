@@ -6,10 +6,13 @@
             <meta name="description" content="A WebVR training using A-Frame.">
             <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
             <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+            <script src="https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
             <script src="index.js"></script>
     </head>
     <body>
         <a-scene>
+
+            <a-entity progressive-controls></a-entity>
 
             <!-- Cursor Component -->
 		    <a-camera >
@@ -88,7 +91,7 @@
                      <a-entity  id="drill"
                                 gltf-model="#drillModel"
                                 scale="0.04 0.04 0.04" position="2.45 0.9 -1.7"
-                                click-drag-drill>
+                                grabbable>
                     </a-entity>
 
 
@@ -96,7 +99,9 @@
                     <a-entity   id="tripod"
                                 gltf-model="#tripodModel"
                                 scale="0.08 0.08 0.08" position="2.2 0.9 -1.7" rotation="0 0 90"
-                                click-drag-tripod>
+                                grabbable
+                                event-set__start="_event: grab-start;_target:#hole;visible:true"
+                                event-set__end="_event: grab-end; _target: #hole; material.color: #00AAFF">
                     </a-entity>
 
                      <!--Instruction how to do with tools -->
