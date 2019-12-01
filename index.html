@@ -36,6 +36,12 @@
                 <a-asset-item id="workbenchModel" src="assets/model/workbench/scene.gltf"></a-asset-item>
                 <a-asset-item id="sceneModel" src="assets/model/scene/scene.gltf"></a-asset-item>
                 <a-asset-item id="doorTableModel" src="assets/model/workbench2/twist.gltf"></a-asset-item>
+
+                <img id="logo" src="assets/image/icon1.jpg">
+                <img id="latecoere" src="assets/image/latecoere.png">
+                <img id="trainText" src="assets/image/treinamentos.png">
+                <img id="doorDrawing" src="assets/image/DOOR (1).jpg">
+                <img id="technicalDrawing" src="assets/image/technical_drawing.001.png">
             </a-assets>
 
             <!-- Ground -->
@@ -123,6 +129,16 @@
             <a-entity    id="whiteboard"
                          gltf-model="#whiteboardModel"
                          scale="2.5 2.5 2.5" position="0.9 1.5 -5" rotation="0 0 0">
+
+                         <a-entity id="drawing"
+                                   scale="0.3 0.3 0.3" position="0 -0.53 0.46">
+                                    <a-image src="#logo" position="0 2.3 -1.5"></a-image>
+                                    <a-image src="#latecoere" position="-0.10 2.35 -1.5" height=0.15 width = 0.7 ></a-image>
+                                    <a-image src="#trainText" position="-0.10 2.45 -1.5" height=0.15 width = 0.7></a-image>
+                                    <a-image src="#doorDrawing" position="-1.1 1.65 -1.5" scale="1 0.8 1"></a-image>
+                                    <a-image src="#technicalDrawing" position="0.4 1.65 -1.5" scale="1 0.6 1"></a-image>
+                         </a-entity>
+            </a-entity>
 
         </a-scene>
        
