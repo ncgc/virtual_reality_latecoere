@@ -140,6 +140,51 @@
                          </a-entity>
             </a-entity>
 
+            <!--Toolbox-->
+           <a-entity    id="toolbox"
+                        gltf-model="#toolboxModel"
+                        scale="1 1 1" position="0.8 0 -2.9" rotation="0 0 0"
+                        static-body>
+
+                        <!--Drill-->
+                        <a-entity  id="drill"
+                                    gltf-model="#drillModel"
+                                    scale="0.04 0.04 0.04" position="2.45 0.9 -1.7"
+                                    grabbable
+                                    dinamic-body>
+                        </a-entity>
+
+                        <!--Tripod-->
+                        <a-entity   id="tripod"
+                                    gltf-model="#tripodModel"
+                                    scale="0.08 0.08 0.08" position="2.2 0.9 -1.7" rotation="0 0 90"
+                                    grabbable
+                                    dinamic-body
+                                    event-set__start="_event: grab-start;_target:#hole;visible:true"
+                                    event-set__end="_event: grab-end; _target: #hole; material.color: #00AAFF">
+                        </a-entity>
+
+                        <!--Caution-->
+                        <a-entity   id="caution"
+                                    gltf-model="#cautionModel"
+                                    position="6.1 -2.9 -0.1" rotation= "0 0 3" scale="2.5 2.5 2.5">
+                                    
+                                    <!--Instruction to grab the correct tools -->
+                                    <a-entity   id= grab_instruction
+                                                position="-1.28 1.9 -0.8" scale="1 1 1" rotation="0 0 -3"
+                                                text="value:Nao se esqueca do tripe! \n
+                                                            Ele e muito importante para manter a concentricidade do furo;
+                                                            color: #d11313; 
+                                                            align: center;
+                                                            anchor: center;
+                                                            wrapCount:40;
+                                                            shader: msdf"
+                                                >
+                                    </a-entity>
+                        </a-entity>
+                </a-entity>
+
+
         </a-scene>
        
     </body>
