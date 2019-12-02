@@ -18,9 +18,10 @@
 
             <!-- Cursor Component -->
 		    <a-camera >
-                <a-entity cursor position="0 0 -5"
-                          geometry="primitive: sphere; radius: 0.007"
-                          material="color: #4287f5; shader: flat; opacity: 0.5">
+                <a-entity   id="cursor"
+                            cursor position="0 0 -5"
+                            geometry="primitive: sphere; radius: 0.007"
+                            material="color: #4287f5; shader: flat; opacity: 0.5">
                 </a-entity>
             </a-camera>
             
@@ -48,45 +49,52 @@
             <a-plane id= "ground"
                      material="color: #4287f5"
                      rotation="-90 0 0"
-                     scale="10 10 1">
+                     scale="10 10 1"
+                     static-body>
             </a-plane>
 
             <!-- Wall -->
             <a-plane id="wall1"
                      material= "color: #32a852"
                      scale="1 1 1" position="0 0 -5" rotation="0 0 0"
-                     height = 5 width=10>
+                     height = 5 width=10
+                     static-body>
             </a-plane>
 
             <a-plane id="wall2"
                      material= "color: #ff80c0"
                      scale="1 1 1" position="5 0 0" rotation="0 -90 0"
-                     height = 5 width=10>
+                     height = 5 width=10
+                     static-body>
             </a-plane>
 
             <a-plane id="wall3"
                      material= "color: #ff80c0"
                      scale="1 1 1" position="-5 0 0" rotation="0 90 0"
-                     height = 5 width=10>
+                     height = 5 width=10
+                     static-body>
             </a-plane>
 
 
            <!--Scene-->
            <a-entity id="scene"
                      gltf-model="#sceneModel"
-                     scale="1 1 1" position="-3.5 1 -3.6" rotation="0 -90 0">
+                     scale="1 1 1" position="-3.5 1 -3.6" rotation="0 -90 0"
+                     static-body>
            </a-entity> 
 
             <!--Table-->
             <a-entity id="table"
                         gltf-model="#doorTableModel"
-                        scale="1 1 1" position="2.24 0.1 -3" rotation="-90 0 0">
+                        scale="1 1 1" position="2.24 0.1 -3" rotation="-90 0 0"
+                        static-body>
             </a-entity> 
 
+           
            <!--Door-->
            <a-entity    id="door"
                         gltf-model="#doorModel" 
-                        scale="1 1 1" position="3.7 1.2 -2.5" rotation="0 90 90"
+                        scale="1 1 1" position="3.7 1.24 -2.5" rotation="0 90 90"
                         static-body>
 
                         <!--Position indicator-->
@@ -128,15 +136,16 @@
             <!--Whiteboard-->
             <a-entity    id="whiteboard"
                          gltf-model="#whiteboardModel"
-                         scale="2.5 2.5 2.5" position="0.9 1.5 -5" rotation="0 0 0">
+                         scale="2.5 2.5 2.5" position="0.4 1.5 -5" rotation="0 0 0"
+                         static-body>
 
-                         <a-entity id="drawing"
+                         <a-entity class="drawing" 
                                    scale="0.3 0.3 0.3" position="0 -0.53 0.46">
                                     <a-image src="#logo" position="0 2.3 -1.5"></a-image>
                                     <a-image src="#latecoere" position="-0.10 2.35 -1.5" height=0.15 width = 0.7 ></a-image>
                                     <a-image src="#trainText" position="-0.10 2.45 -1.5" height=0.15 width = 0.7></a-image>
-                                    <a-image src="#doorDrawing" position="-1.1 1.65 -1.5" scale="1 0.8 1"></a-image>
-                                    <a-image src="#technicalDrawing" position="0.4 1.65 -1.5" scale="1 0.6 1"></a-image>
+                                    <a-image id="doordrawn" src="#doorDrawing" position="-1.1 1.65 -1.5" scale="1 0.8 1" zoom="target:#doordrawn"></a-image>
+                                    <a-image id="techdrawn" src="#technicalDrawing" position="0.4 1.65 -1.5" scale="1 0.6 1" zoom="target:#techdrawn"></a-image>
                          </a-entity>
             </a-entity>
 
@@ -144,7 +153,8 @@
            <a-entity    id="toolbox"
                         gltf-model="#toolboxModel"
                         scale="1 1 1" position="0.8 0 -2.9" rotation="0 0 0"
-                        static-body>
+                        static-body
+                        blink>
 
                         <!--Drill-->
                         <a-entity  id="drill"
@@ -167,10 +177,12 @@
                         <!--Caution-->
                         <a-entity   id="caution"
                                     gltf-model="#cautionModel"
-                                    position="6.1 -2.9 -0.1" rotation= "0 0 3" scale="2.5 2.5 2.5">
+                                    position="6.1 -2.9 -0.1" rotation= "0 0 3" scale="2.5 2.5 2.5"
+                                    blink
+                                    static-body>
                                     
                                     <!--Instruction to grab the correct tools -->
-                                    <a-entity   id= grab_instruction
+                                    <a-entity   id= "grab_instruction"
                                                 position="-1.28 1.9 -0.8" scale="1 1 1" rotation="0 0 -3"
                                                 text="value:Nao se esqueca do tripe! \n
                                                             Ele e muito importante para manter a concentricidade do furo;
@@ -179,9 +191,15 @@
                                                             anchor: center;
                                                             wrapCount:40;
                                                             shader: msdf"
-                                                >
+                                                animation__enter="property: material.color; from: #333333; to: #FF0000; 
+                                                                startEvents: mouseenter; dur: 250; easing: linear"
+                                                animation__leave="property: material.color; from: #FF0000; to: #333333; 
+                                                                startEvents: mouseleave; dur: 250; easing: linear"
+                                                blink>
+                                               
                                     </a-entity>
                         </a-entity>
+  
                 </a-entity>
 
 
