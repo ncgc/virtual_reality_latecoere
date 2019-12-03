@@ -37,24 +37,36 @@ AFRAME.registerComponent ('zoom', {
 	}
 });
 
-
-AFRAME.registerComponent('init-training',{
-    init: function(){
+AFRAME.registerComponent ('init_training', {
+	schema: {
+		target: {type: 'selector', default: '#start_button'}
+	},
+	
+	init: function () {
         var el = this.el;
+
+        el.addEventListener('click', function(){
+            var starters = document.querySelectorAll(".starters");
+            for(item of starters){
+                item.setAttribute('visible', false);
+            }
+
+            // for (item in starters){ 
+            //     console.log(item);
+            //     // item.setAttribute('visible', false);
+                
+            // }
+
+            var camera = document.querySelector("#camera");
+            camera.setAttribute('position', {x: 0, y:1.5,z:0});
+            
+            var cursor = document.querySelector("#cursor");
+            cursor.setAttribute('position', {x: 0, y:0, z:-5});
+
+            var hangar=document.querySelector("#hangar");
+            hangar.setAttribute('rotation', {x:0, y:0, z:0});
+            hangar.setAttribute('position', {x:0, y:0, z:0});
+        });
     }
-
-    var iniciar = document.querySelector('#startButton');
-    iniciar.addEventListener('click', function() {
-
-    // Change camera position
-    let camera = document.querySelector('#camera');
-    camera.setAttribute('position', {x:2, y:0, z:0});
-    camera.setAttribute('rotation', {x:0, y:0, z:0});
-
-    //Training Menu
-    let trainingMenu = document.querySelector("#training-menu-brackground");
-    trainingMenu.setAttribute("visible", true);
-
-
-
 });
+

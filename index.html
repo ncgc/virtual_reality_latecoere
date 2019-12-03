@@ -5,6 +5,7 @@
             <title>Aframe Study</title>
             <meta name="description" content="A WebVR training using A-Frame.">
             <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+            <script src="index.js"></script>
     </head>
     <body>
         <a-scene>
@@ -15,7 +16,9 @@
                 <a-asset-item id="airplaneModel" src="assets/model/latecoere_290_wheels_version/scene.gltf"></a-asset-item>
 
                 <img id="skyTexture" src="assets/image/cloud.jpg">
-                <img id="asphalt" src="assets/image/TexturesCom_Roads0107_6_S.jpg">
+                <img id="albedo" src="assets/image/TexturesCom_BitumenCobblestone2_3x3_1K_albedo.tif">
+                <img id="roughness" src="assets/image/TexturesCom_BitumenCobblestone2_3x3_1K_roughness.tif">
+                <img id="normal" src="assets/image/TexturesCom_BitumenCobblestone2_3x3_1K_normal.tif">
                 <img id="100YearsModel" src="assets/image/100 years.png">
                 <img id="logo" src="assets/image/icon1.jpg">
                 <img id="latecoere" src="assets/image/latecoere.png">
@@ -34,38 +37,35 @@
         <a-sky src="#skyTexture"></a-sky>
 
         <!--Ground-->
-        <a-plane    material="color: #98a2a6; src:#asphalt; repeat: 10 10 10"
+        <a-plane    material="color: #98a2a6; ambientOcclusionMap:#albedo; roughnessMap: #roughness; repeat: 10 10 10"
                     scale="100 100 100" rotation="-90 0 0" position="0 0.5 0">
         </a-plane>
 
-        <a-entity   id="airplane"
+        <a-entity   id="airplane" class="starters"
                     gltf-model="#airplaneModel"
-                    position="1.5 1.4 4" rotation="0 120 -15" scale="0.8 0.8 0.6"
-                    init-training>
+                    position="1.5 1.4 4" rotation="0 120 -15" scale="0.8 0.8 0.6">
         </a-entity>
 
         <!--Logo 100 Years-->
-        <a-circle   id="firstLogo"
+        <a-circle   id="firstLogo" class="starters"
                     src="#100YearsModel"
-                    position="17 15 0" scale="3 3 3"
-                    init-training>
+                    position="17 15 0" scale="3 3 3">
         </a-circle>
 
         <!--Logo Training-->
-        <a-entity   id="logoTraining"
-                    position="-17 15 0" scale="3 3 3"
-                    init-training>
-                    <a-image src="#logo" position="-5 1.7 -3" scale="4 4 4"></a-image>
-                    <a-image src="#latecoere" position="-4.7 1.55 -1.5" height=0.15 width = 0.7 scale="4 4 4"></a-image>
-                    <a-image src="#trainText" position="-4.4 1.8 -1." height=0.15 width = 0.7 scale="5 5 5"></a-image>
+        <a-entity   id="logoTraining" class="starters"
+                    position="-17 15 0" scale="3 3 3" rotation="0 10 0">
+                    <a-image src="#logo" position="-3.8 0.2 0" scale="4 4 4"></a-image>
+                    <a-image src="#latecoere" position="-4.5 0.3 0" height=0.15 width = 0.7 scale="4 4 4"></a-image>
+                    <a-image src="#trainText" position="-4.2 0.6 0" height=0.15 width = 0.7 scale="5 5 5"></a-image>
         </a-entity>
 
         <!--Start Button-->
-        <a-box  id="startButton" 
+        <a-box  id="#start_button" class="starters"
                 position="-29 10 -3" scale="8 8 8" rotation="0 25 5"
                 color=#082459 
                 height=0.1 width=0.4 depth=-0.1
-                init-training>
+                init_training>
                     <a-entity
                     id="startButtonLabel"
                     text="value: INICIAR; color:white; align: center; width: 0.5; wrapCount: 10; opacity: 0"
@@ -75,15 +75,15 @@
       </a-box>
 
         <!-- Cursor Component -->
-        <a-camera position="-8 3 20" >
+        <a-camera id="camera" position="-8 3 20">
                 <a-entity   id="cursor"
-                            cursor position="-17 1.6 -20"
+                            cursor position="-21 7 -22"
                             geometry="primitive: sphere; radius: 0.2"
                             material="color: #4287f5; shader: flat; opacity: 0.5">
                 </a-entity>
         </a-camera>
 
-        
+
 
         </a-scene>
     </body>
