@@ -5,39 +5,18 @@
             <title>Aframe Study</title>
             <meta name="description" content="A WebVR training using A-Frame.">
             <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
-            <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
-            <script src="https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
-            <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.13.1/dist/aframe-extras.min.js"></script>
-            <script src="index.js"></script>
     </head>
     <body>
-        <a-scene physics="gravity: -9.8; restitution: 0.7"
-                renderer="gammaOutput: true">
+        <a-scene>
 
-            <a-entity progressive-controls></a-entity>
-
-            <!-- Cursor Component -->
-		    <a-camera >
-                <a-entity   id="cursor"
-                            cursor position="0 0 -5"
-                            geometry="primitive: sphere; radius: 0.007"
-                            material="color: #4287f5; shader: flat; opacity: 0.5">
-                </a-entity>
-            </a-camera>
-            
-
-            <!--Models Reference-->
+            <!--Models & Images Reference-->
             <a-assets>
-                <a-asset-item id="doorModel" src="assets/model/Door.gltf"></a-asset-item>
-                <a-asset-item id="toolboxModel" src="assets/model/toolbox/Toolbox.gltf"></a-asset-item>
-                <a-asset-item id="tripodModel" src="assets/model/tripod/tripod.gltf"></a-asset-item>
-                <a-asset-item id="drillModel" src="assets/model/drill/Drill_01.gltf"></a-asset-item>
-                <a-asset-item id="cautionModel" src="assets/model/caution/model.gltf"></a-asset-item>
-                <a-asset-item id="whiteboardModel" src="assets/model/whiteboard/Whiteboard.gltf"></a-asset-item>
-                <a-asset-item id="workbenchModel" src="assets/model/workbench/scene.gltf"></a-asset-item>
-                <a-asset-item id="sceneModel" src="assets/model/scene/scene.gltf"></a-asset-item>
-                <a-asset-item id="doorTableModel" src="assets/model/workbench2/twist.gltf"></a-asset-item>
+                <a-asset-item id="hangarModel" src="assets/model/scene.gltf"></a-asset-item>
+                <a-asset-item id="airplaneModel" src="assets/model/latecoere_290_wheels_version/scene.gltf"></a-asset-item>
 
+                <img id="skyTexture" src="assets/image/cloud.jpg">
+                <img id="asphalt" src="assets/image/TexturesCom_Roads0107_6_S.jpg">
+                <img id="100YearsModel" src="assets/image/100 years.png">
                 <img id="logo" src="assets/image/icon1.jpg">
                 <img id="latecoere" src="assets/image/latecoere.png">
                 <img id="trainText" src="assets/image/treinamentos.png">
@@ -45,165 +24,67 @@
                 <img id="technicalDrawing" src="assets/image/technical_drawing.001.png">
             </a-assets>
 
-            <!-- Ground -->
-            <a-plane id= "ground"
-                     material="color: #4287f5"
-                     rotation="-90 0 0"
-                     scale="10 10 1"
-                     static-body>
-            </a-plane>
+        <!--Hangar-->
+        <a-entity   id="hangar"
+                    gltf-model="#hangarModel"
+                    scale="1 1 1" position="-1 0 -3" rotation="0 30 0">
+        </a-entity>
 
-            <!-- Wall -->
-            <a-plane id="wall1"
-                     material= "color: #32a852"
-                     scale="1 1 1" position="0 0 -5" rotation="0 0 0"
-                     height = 5 width=10
-                     static-body>
-            </a-plane>
+        <!--Sky-->
+        <a-sky src="#skyTexture"></a-sky>
 
-            <a-plane id="wall2"
-                     material= "color: #ff80c0"
-                     scale="1 1 1" position="5 0 0" rotation="0 -90 0"
-                     height = 5 width=10
-                     static-body>
-            </a-plane>
+        <!--Ground-->
+        <a-plane    material="color: #98a2a6; src:#asphalt; repeat: 10 10 10"
+                    scale="100 100 100" rotation="-90 0 0" position="0 0.5 0">
+        </a-plane>
 
-            <a-plane id="wall3"
-                     material= "color: #ff80c0"
-                     scale="1 1 1" position="-5 0 0" rotation="0 90 0"
-                     height = 5 width=10
-                     static-body>
-            </a-plane>
+        <a-entity   id="airplane"
+                    gltf-model="#airplaneModel"
+                    position="1.5 1.4 4" rotation="0 120 -15" scale="0.8 0.8 0.6"
+                    init-training>
+        </a-entity>
 
+        <!--Logo 100 Years-->
+        <a-circle   id="firstLogo"
+                    src="#100YearsModel"
+                    position="17 15 0" scale="3 3 3"
+                    init-training>
+        </a-circle>
 
-           <!--Scene-->
-           <a-entity id="scene"
-                     gltf-model="#sceneModel"
-                     scale="1 1 1" position="-3.5 1 -3.6" rotation="0 -90 0"
-                     static-body>
-           </a-entity> 
+        <!--Logo Training-->
+        <a-entity   id="logoTraining"
+                    position="-17 15 0" scale="3 3 3"
+                    init-training>
+                    <a-image src="#logo" position="-5 1.7 -3" scale="4 4 4"></a-image>
+                    <a-image src="#latecoere" position="-4.7 1.55 -1.5" height=0.15 width = 0.7 scale="4 4 4"></a-image>
+                    <a-image src="#trainText" position="-4.4 1.8 -1." height=0.15 width = 0.7 scale="5 5 5"></a-image>
+        </a-entity>
 
-            <!--Table-->
-            <a-entity id="table"
-                        gltf-model="#doorTableModel"
-                        scale="1 1 1" position="2.24 0.1 -3" rotation="-90 0 0"
-                        static-body>
-            </a-entity> 
+        <!--Start Button-->
+        <a-box  id="startButton" 
+                position="-29 10 -3" scale="8 8 8" rotation="0 25 5"
+                color=#082459 
+                height=0.1 width=0.4 depth=-0.1
+                init-training>
+                    <a-entity
+                    id="startButtonLabel"
+                    text="value: INICIAR; color:white; align: center; width: 0.5; wrapCount: 10; opacity: 0"
+                    position="0 0 0"
+                    animation="property: components.text.material.uniforms.opacity.value; from: 0; to: 1; dur: 500; delay: 500"
+                    ></a-entity>
+      </a-box>
 
-           
-           <!--Door-->
-           <a-entity    id="door"
-                        gltf-model="#doorModel" 
-                        scale="1 1 1" position="3.7 1.24 -2.5" rotation="0 90 90"
-                        static-body>
-
-                        <!--Position indicator-->
-                        <a-sphere id="hole_position"
-                                radius="1" height="1.5" color="#EF2D5E"
-                                position="1 -15 50" 
-                                visible= false>
-                                <a-animation  attribute="material.color"
-                                                from="#EF2D5E"
-                                                to="#4287f5"
-                                                repeat="indefinite"
-                                                direction="alternate"
-                                                dur="100">
-                                </a-animation>
-                        </a-sphere>
-
-                        <!--Instruction to hole -->
-                        <a-entity id= hole_instruction
-                                position="10 0 85" scale="130 140 130" rotation="0 90 90"
-                                text="value: Faca um furo de diametro= 4mm no ponto indicado\n
-                                                Busque as ferramentas para a atividade na caixa de ferramentas;
-                                                color: #4c4c4c; 
-                                                align: center;
-                                                width: 0.5; 
-                                                wrapCount:50;
-                                                shader: msdf"
-                                >
-                        </a-entity>
-             
-                        <!--Hole made by the drill-->
-                        <a-cylinder id="hole"
-                            radius="0.5" height="1.5" color="#FFC65D"
-                            position="10 -15 50" rotation="-90 -90 0"
-                            visible="false"
-                            >
-                        </a-cylinder>
-           </a-entity> 
-
-            <!--Whiteboard-->
-            <a-entity    id="whiteboard"
-                         gltf-model="#whiteboardModel"
-                         scale="2.5 2.5 2.5" position="0.4 1.5 -5" rotation="0 0 0"
-                         static-body>
-
-                         <a-entity class="drawing" 
-                                   scale="0.3 0.3 0.3" position="0 -0.53 0.46">
-                                    <a-image src="#logo" position="0 2.3 -1.5"></a-image>
-                                    <a-image src="#latecoere" position="-0.10 2.35 -1.5" height=0.15 width = 0.7 ></a-image>
-                                    <a-image src="#trainText" position="-0.10 2.45 -1.5" height=0.15 width = 0.7></a-image>
-                                    <a-image id="doordrawn" src="#doorDrawing" position="-1.1 1.65 -1.5" scale="1 0.8 1" zoom="target:#doordrawn"></a-image>
-                                    <a-image id="techdrawn" src="#technicalDrawing" position="0.4 1.65 -1.5" scale="1 0.6 1" zoom="target:#techdrawn"></a-image>
-                         </a-entity>
-            </a-entity>
-
-            <!--Toolbox-->
-           <a-entity    id="toolbox"
-                        gltf-model="#toolboxModel"
-                        scale="1 1 1" position="0.8 0 -2.9" rotation="0 0 0"
-                        static-body
-                        blink>
-
-                        <!--Drill-->
-                        <a-entity  id="drill"
-                                    gltf-model="#drillModel"
-                                    scale="0.04 0.04 0.04" position="2.45 0.9 -1.7"
-                                    grabbable
-                                    dinamic-body>
-                        </a-entity>
-
-                        <!--Tripod-->
-                        <a-entity   id="tripod"
-                                    gltf-model="#tripodModel"
-                                    scale="0.08 0.08 0.08" position="2.2 0.9 -1.7" rotation="0 0 90"
-                                    grabbable
-                                    dinamic-body
-                                    event-set__start="_event: grab-start;_target:#hole;visible:true"
-                                    event-set__end="_event: grab-end; _target: #hole; material.color: #00AAFF">
-                        </a-entity>
-
-                        <!--Caution-->
-                        <a-entity   id="caution"
-                                    gltf-model="#cautionModel"
-                                    position="6.1 -2.9 -0.1" rotation= "0 0 3" scale="2.5 2.5 2.5"
-                                    blink
-                                    static-body>
-                                    
-                                    <!--Instruction to grab the correct tools -->
-                                    <a-entity   id= "grab_instruction"
-                                                position="-1.28 1.9 -0.8" scale="1 1 1" rotation="0 0 -3"
-                                                text="value:Nao se esqueca do tripe! \n
-                                                            Ele e muito importante para manter a concentricidade do furo;
-                                                            color: #d11313; 
-                                                            align: center;
-                                                            anchor: center;
-                                                            wrapCount:40;
-                                                            shader: msdf"
-                                                animation__enter="property: material.color; from: #333333; to: #FF0000; 
-                                                                startEvents: mouseenter; dur: 250; easing: linear"
-                                                animation__leave="property: material.color; from: #FF0000; to: #333333; 
-                                                                startEvents: mouseleave; dur: 250; easing: linear"
-                                                blink>
-                                               
-                                    </a-entity>
-                        </a-entity>
-  
+        <!-- Cursor Component -->
+        <a-camera position="-8 3 20" >
+                <a-entity   id="cursor"
+                            cursor position="-17 1.6 -20"
+                            geometry="primitive: sphere; radius: 0.2"
+                            material="color: #4287f5; shader: flat; opacity: 0.5">
                 </a-entity>
+        </a-camera>
 
+        
 
         </a-scene>
-       
     </body>
 </html>

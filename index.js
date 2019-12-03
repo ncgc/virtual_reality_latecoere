@@ -36,3 +36,25 @@ AFRAME.registerComponent ('zoom', {
 		});
 	}
 });
+
+
+AFRAME.registerComponent('init-training',{
+    init: function(){
+        var el = this.el;
+    }
+
+    var iniciar = document.querySelector('#startButton');
+    iniciar.addEventListener('click', function() {
+
+    // Change camera position
+    let camera = document.querySelector('#camera');
+    camera.setAttribute('position', {x:2, y:0, z:0});
+    camera.setAttribute('rotation', {x:0, y:0, z:0});
+
+    //Training Menu
+    let trainingMenu = document.querySelector("#training-menu-brackground");
+    trainingMenu.setAttribute("visible", true);
+
+
+
+});
