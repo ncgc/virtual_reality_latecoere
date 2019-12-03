@@ -66,3 +66,35 @@ AFRAME.registerComponent ('init_training', {
     }
 });
 
+AFRAME.registerComponent('drilling',{
+	
+	tick: function () {
+        var el = this.el;
+        var correct = false;
+        var tripodDoorPos = {x:-0.162, y:1.534, z:-3.587}
+
+        el.addEventListener('hitstart', function(){
+            console.log(el);
+            var idHit = el.id;
+            console.log(idHit);
+            el.setAttribute('body', 'static-body');
+            if (idHit == '#tripod'){
+                console.log('ja sei que bati com o tripe');
+                el.setAttribute('position', tripodDoorPos);
+                el.setAttribute('rotation', {x:0, y:180, z: 0});
+            }
+            if(idHit == '#drill'){
+                var tripod = document.querySelector("#tripod");
+                var tripodPos = tripod.getDOMAttribute("position");
+                console.log(tripod, tripodPos);
+                if (tripodPos == tripodDoorPos){
+                    console.log('correto');
+                }
+                else{
+                    console.log('errado');
+                }
+            }
+        });
+    }
+});
+

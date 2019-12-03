@@ -8,10 +8,13 @@
             <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
             <script src="https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
             <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.13.1/dist/aframe-extras.min.js"></script>
+            <script src="https://unpkg.com/aframe-aabb-collider-component@^2.2.1/dist/aframe-aabb-collider-component.min.js">	</script>
             <script src="index.js"></script>
     </head>
     <body>
-        <a-scene physics="gravity: -9.8; restitution: 0.7">
+        <a-scene physics="gravity: -9.8; restitution: 0.7; driver:local">
+
+               
 
             <!--Models & Images Reference-->
             <a-assets>
@@ -92,13 +95,13 @@
 
         <!--Training Scene-->
        
-        
         <!--Door-->
         <a-entity  id="door"
                     gltf-model="#doorModel" 
                     scale="1 1 1" position="0 1.24 -4" rotation="0 90 0"
                     animation__enter="property: rotation; to: 0 360 0; repeat=indefinite
-                                     startEvents: mouseenter; dur: 10000; easing: linear">
+                                     startEvents: mouseenter; dur: 10000; easing: linear"
+                    static-body>
                     
         </a-entity>
 
@@ -112,9 +115,10 @@
          <!--Drill-->
          <a-entity  id="drill"
                     gltf-model="#drillModel"
-                    scale="0.04 0.04 0.04" position="-1.48 1.45 -3.8"
+                    scale="0.04 0.04 0.04" position="-1.48 1.45 -3.8" rotation="0 180 0"
                     grabbable
-                    dinamic-body>
+                    aabb-collider="objects: #door"
+                    drilling>
         </a-entity>
 
         <!--Tripod-->
@@ -122,7 +126,8 @@
                     gltf-model="#tripodModel"
                     scale="0.08 0.08 0.08" position="-1.8 1.5 -3.8" rotation="0 0 90"
                     grabbable
-                    dinamic-body
+                    aabb-collider="objects: #door"
+                    drilling
                     >
         </a-entity>
 
