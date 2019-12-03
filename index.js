@@ -51,17 +51,12 @@ AFRAME.registerComponent ('init_training', {
                 item.setAttribute('visible', false);
             }
 
-            // for (item in starters){ 
-            //     console.log(item);
-            //     // item.setAttribute('visible', false);
-                
-            // }
-
             var camera = document.querySelector("#camera");
-            camera.setAttribute('position', {x: 0, y:1.5,z:0});
+            camera.setAttribute('position', {x: 0, y:1.5,z:-2});
             
             var cursor = document.querySelector("#cursor");
-            cursor.setAttribute('position', {x: 0, y:0, z:-5});
+            cursor.setAttribute('position', {x: 0, y:0, z:-1});
+            cursor.setAttribute('geometry', {radius: 0.05});
 
             var hangar=document.querySelector("#hangar");
             hangar.setAttribute('rotation', {x:0, y:0, z:0});
