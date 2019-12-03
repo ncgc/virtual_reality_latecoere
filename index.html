@@ -20,6 +20,7 @@
                 <a-asset-item id="doorModel" src="assets/model/door/Door.gltf"></a-asset-item>
                 <a-asset-item id="tripodModel" src="assets/model/tripod/tripod.gltf"></a-asset-item>
                 <a-asset-item id="drillModel" src="assets/model/drill/Drill_01.gltf"></a-asset-item>
+                <a-asset-item id="toolboxModel" src="assets/model/toolbox/Toolbox.gltf"></a-asset-item>
 
                 <img id="skyTexture" src="assets/image/cloud.jpg">
                 <img id="albedo" src="assets/image/TexturesCom_BitumenCobblestone2_3x3_1K_albedo.tif">
@@ -81,7 +82,7 @@
       </a-box>
 
         <!-- Cursor Component -->
-        <a-camera id="camera" position="-8 3 20">
+        <a-camera progressive-controls id="camera" position="-8 3 20">
                 <a-entity   id="cursor"
                             cursor position="-21 7 -22"
                             geometry="primitive: sphere; radius: 0.2"
@@ -90,7 +91,8 @@
         </a-camera>
 
         <!--Training Scene-->
-
+       
+        
         <!--Door-->
         <a-entity  id="door"
                     gltf-model="#doorModel" 
@@ -101,16 +103,16 @@
         </a-entity>
 
         <!--Toolbox-->
-        <a-entity    id="toolbox"
+        <a-entity   id="toolbox"
                     gltf-model="#toolboxModel"
-                    scale="1 1 1" position="0.8 0 -2.9" rotation="0 0 0"
+                    scale="1 1 1" position="-4 0.6 -2"
                     static-body>
         </a-entity>
-        
+
          <!--Drill-->
          <a-entity  id="drill"
                     gltf-model="#drillModel"
-                    scale="0.04 0.04 0.04" position="2.45 0.9 -1.7"
+                    scale="0.04 0.04 0.04" position="-1.48 1.45 -3.8"
                     grabbable
                     dinamic-body>
         </a-entity>
@@ -118,7 +120,7 @@
         <!--Tripod-->
         <a-entity   id="tripod"
                     gltf-model="#tripodModel"
-                    scale="0.08 0.08 0.08" position="2.2 0.9 -1.7" rotation="0 0 90"
+                    scale="0.08 0.08 0.08" position="-1.8 1.5 -3.8" rotation="0 0 90"
                     grabbable
                     dinamic-body
                     >

@@ -52,11 +52,12 @@ AFRAME.registerComponent ('init_training', {
             }
 
             var camera = document.querySelector("#camera");
-            camera.setAttribute('position', {x: 0, y:1.5,z:-2});
+            camera.setAttribute('position', {x: 0, y:0 ,z:-2});
             
             var cursor = document.querySelector("#cursor");
-            cursor.setAttribute('position', {x: 0, y:0, z:-1});
-            cursor.setAttribute('geometry', {radius: 0.05});
+            cursor.setAttribute('position', {x: 0, y:0, z:-1.8});
+            cursor.setAttribute('geometry', {radius: 0.01});
+            cursor.setAttribute('raycaster', true);
 
             var hangar=document.querySelector("#hangar");
             hangar.setAttribute('rotation', {x:0, y:0, z:0});
